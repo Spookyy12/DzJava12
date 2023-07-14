@@ -62,7 +62,7 @@ public class PosterRepositoryTest {
     }
 
     @Test
-    public void lastFilmMoreLimit() {
+    public void lastFilmEqualsLimit() {
         PosterRepository poster = new PosterRepository(6);
         poster.addNewMovie("Movie1");
         poster.addNewMovie("Movie2");
@@ -71,10 +71,40 @@ public class PosterRepositoryTest {
         poster.addNewMovie("Movie5");
         poster.addNewMovie("Movie6");
 
-        String[] expected = {"Movie6","Movie5", "Movie4", "Movie3", "Movie2", "Movie1"};
+        String[] expected = {"Movie6", "Movie5", "Movie4", "Movie3", "Movie2", "Movie1"};
         String[] actual = poster.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
 
     }
+
+    @Test
+    public void lastMovieIfLowLimit() {
+        PosterRepository poster = new PosterRepository(6);
+        poster.addNewMovie("Movie1");
+        poster.addNewMovie("Movie2");
+        poster.addNewMovie("Movie3");
+
+        String[] expected = {"Movie3", "Movie2", "Movie1"};
+        String[] actual = poster.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void lastMovieIfHighLimit() {
+        PosterRepository poster = new PosterRepository(6);
+        poster.addNewMovie("Movie1");
+        poster.addNewMovie("Movie2");
+        poster.addNewMovie("Movie3");
+        poster.addNewMovie("Movie4");
+        poster.addNewMovie("Movie5");
+        poster.addNewMovie("Movie6");
+        poster.addNewMovie("Movie7");
+
+        String[] expected = {"Movie7","Movie6", "Movie5", "Movie4","Movie3", "Movie2"};
+        String[] actual = poster.findLast();
+        System.out.println();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
 }

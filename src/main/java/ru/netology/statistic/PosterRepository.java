@@ -1,6 +1,7 @@
 package ru.netology.statistic;
 
 public class PosterRepository {
+
     private int limit;
 
     public PosterRepository() {
@@ -27,6 +28,7 @@ public class PosterRepository {
     }
 
     public String[] findLast() {
+
         int result;
         if (movies.length < limit) {
             result = movies.length;
